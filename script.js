@@ -1,3 +1,6 @@
+// Array of possible answers
+let choices = ['rock', 'paper', 'scissors'];
+
 // Generate computer choice
 const getComputerChoice = () => {
     let num = Math.floor(Math.random() * 3 + 1);
@@ -16,6 +19,12 @@ const getComputerChoice = () => {
 
 // Ask for player choice
 const askPlayerChoice = () => {
-    let playerChoice = prompt("Choose rock, paper, or scissors");
+    let playerChoice = prompt("Choose rock, paper, or scissors").toLowerCase();
+    if (choices.indexOf(playerChoice) === -1) {
+        console.log("You did not pick a valid choice!");
+        askPlayerChoice();
+    } else {
+        console.log(`You chose ${playerChoice}`);
+    }
     return playerChoice;
 }
