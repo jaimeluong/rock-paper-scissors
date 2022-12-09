@@ -33,33 +33,59 @@ const askPlayerChoice = () => {
 const game = (computerChoice, playerChoice) => {
     if (computerChoice == 'rock' && playerChoice == 'rock') {
         console.log("Computer chose rock and you chose rock, so tie!");
+        return 0;
     } else if (computerChoice == 'rock' && playerChoice == 'paper') {
         console.log("Computer chose rock and you chose paper, so you win!");
+        return true;
     } else if (computerChoice == 'rock' && playerChoice == 'scissors') {
         console.log("Computer chose rock and you chose scissors, so you lose!");
+        return false;
     } else if (computerChoice == 'paper' && playerChoice == 'rock') {
         console.log("Computer chose paper and you chose rock, so you lose!");
+        return false;
     } else if (computerChoice == 'paper' && playerChoice == 'paper') {
         console.log("Computer chose paper and you chose paper, so tie!");
+        return 0;
     } else if (computerChoice == 'paper' && playerChoice == 'scissors') {
         console.log("Computer chose paper and you chose scissors, so you win!");
+        return true;
     } else if (computerChoice == 'scissors' && playerChoice == 'rock') {
         console.log("Computer chose scissors and you chose rock, so you win!");
+        return true;
     } else if (computerChoice == 'scissors' && playerChoice == 'paper') {
         console.log("Computer chose scissors and you chose paper, so you lose!");
+        return false;
     } else {
         console.log("Computer chose scissors and you chose scissors, so tie!");
+        return 0;
     }
 }
 
 // Determine a winner out of the 5 rounds
-const determineWinner = () => {
-
+const determineWinner = (computer, player) => {
+    if(computer > player) {
+        console.log(`The computer won ${computer} round(s) and you won ${player} round(s). Good luck next time!`);
+    } else if (computer === player) {
+        console.log(`The computer won ${computer} round(s) and you won ${player} round(s). You tied!`);
+    } else {
+        console.log(`The computer won ${computer} round(s) and you won ${player} round(s). Congratulations!`);
+    }
 }
 
-// Play five rounds and declare winner
+// Initialize counters to keep track of score throughout games
+let computerCounter = 0;
+let playerCounter = 0;
+
+// Play five rounds
 for(var i=0; i<5; i++) {
-    let computerCounter = 0;
-    let playerCounter = 0;
-    game(getComputerChoice(), askPlayerChoice());
+    let result = game(getComputerChoice(), askPlayerChoice());
+    if(result === true) {
+        playerCounter++;
+    } else if (result === false) {
+        computerCounter++;
+    } else {
+    }
 }
+
+// Declare a winner
+determineWinner(computerCounter, playerCounter);
