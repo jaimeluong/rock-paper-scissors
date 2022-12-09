@@ -52,5 +52,14 @@ const game = (computerChoice, playerChoice) => {
     }
 }
 
-// Run game upon page load
-game(getComputerChoice(), askPlayerChoice());
+// Determine a winner out of the 5 rounds
+const determineWinner = () => {
+
+}
+
+// Play five rounds and declare winner
+for(var i=0; i<5; i++) {
+    let computerCounter = 0;
+    let playerCounter = 0;
+    game(getComputerChoice(), askPlayerChoice());
+}
