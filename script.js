@@ -7,11 +7,11 @@ const getComputerChoice = () => {
     console.log(`Computer chose ${choices[num-1]}`);
     let computerChoice;
     switch(num) {
-        case 1: computerChoice = 'rock';
+        case 1: computerChoice = choices[0];
             break;
-        case 2: computerChoice = 'paper';
+        case 2: computerChoice = choices[1];
             break;
-        case 3: computerChoice = 'scissors';
+        case 3: computerChoice = choices[2];
             break;
     }
     return computerChoice;
@@ -31,34 +31,45 @@ const askPlayerChoice = () => {
 
 // Play a round
 const game = (computerChoice, playerChoice) => {
-    if (computerChoice == 'rock' && playerChoice == 'rock') {
-        console.log("Computer chose rock and you chose rock, so tie!");
-        return 0;
-    } else if (computerChoice == 'rock' && playerChoice == 'paper') {
-        console.log("Computer chose rock and you chose paper, so you win!");
-        return true;
-    } else if (computerChoice == 'rock' && playerChoice == 'scissors') {
-        console.log("Computer chose rock and you chose scissors, so you lose!");
-        return false;
-    } else if (computerChoice == 'paper' && playerChoice == 'rock') {
-        console.log("Computer chose paper and you chose rock, so you lose!");
-        return false;
-    } else if (computerChoice == 'paper' && playerChoice == 'paper') {
-        console.log("Computer chose paper and you chose paper, so tie!");
-        return 0;
-    } else if (computerChoice == 'paper' && playerChoice == 'scissors') {
-        console.log("Computer chose paper and you chose scissors, so you win!");
-        return true;
-    } else if (computerChoice == 'scissors' && playerChoice == 'rock') {
-        console.log("Computer chose scissors and you chose rock, so you win!");
-        return true;
-    } else if (computerChoice == 'scissors' && playerChoice == 'paper') {
-        console.log("Computer chose scissors and you chose paper, so you lose!");
-        return false;
+    if (computerChoice === choices[0]) {
+        if (playerChoice === choices[0]) {
+            announceRound(computerChoice, playerChoice, 'tie!');
+            return 0;
+        } else if (playerChoice === choices[1]) {
+            announceRound(computerChoice, playerChoice, 'you win!');
+            return true;
+        } else {
+            announceRound(computerChoice, playerChoice, 'you lose!');
+            return false;
+        }
+    } else if (computerChoice === choices[1]) {
+        if (playerChoice === choices[0]) {
+            announceRound(computerChoice, playerChoice, 'you lose!');
+            return false;
+        } else if (playerChoice === choices[1]) {
+            announceRound(computerChoice, playerChoice, 'tie!');
+            return 0;
+        } else {
+            announceRound(computerChoice, playerChoice, 'you win!');
+            return true;
+        }
     } else {
-        console.log("Computer chose scissors and you chose scissors, so tie!");
-        return 0;
+        if (playerChoice === choices[0]) {
+            announceRound(computerChoice, playerChoice, 'you win!');
+            return true;
+        } else if (playerChoice === choices[1]) {
+            announceRound(computerChoice, playerChoice, 'you lose!');
+            return false;
+        } else {
+            announceRound(computerChoice, playerChoice, 'tie!');
+            return 0;
+        }
     }
+}
+
+// Declare winner of round
+const announceRound = (computerChoice, playerChoice, result) => {
+    console.log(`Computer chose ${computerChoice} and you chose ${playerChoice}, so ${result}`);
 }
 
 // Determine a winner out of the 5 rounds
@@ -84,6 +95,7 @@ for(var i=0; i<5; i++) {
     } else if (result === false) {
         computerCounter++;
     } else {
+        continue;
     }
 }
 
