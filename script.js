@@ -1,8 +1,9 @@
 // Get nodes on page
-// Rock, paper, scissors buttons
+// Rock, paper, scissors buttons and reset button
 const rockButton = document.querySelector('#rockBtn'); // Rock button
 const paperButton = document.querySelector('#paperBtn'); // Paper button
 const scissorsButton = document.querySelector('#scissorsBtn'); // Scissors button
+const resetButton = document.querySelector('#resetBtn'); // Reset button
 
 // Text showing the choice the player just made
 const choiceMade = document.querySelector('.choiceMade');
@@ -128,3 +129,14 @@ const playGame = (playerChoice) => { // Choice is a string
         }
     }
 }
+
+// Reset the game if reset button is clicked
+resetButton.addEventListener('click', () => {
+    playerRunningScore.textContent = 0;
+    computerRunningScore.textContent = 0;
+    playerScore = 0;
+    cpuScore = 0;
+    rounds = 0;
+    roundWinner.textContent = '';
+    finalWinner.textContent = '';
+});
