@@ -139,4 +139,5 @@ resetButton.addEventListener('click', () => {
     rounds = 0;
     roundWinner.textContent = '';
     finalWinner.textContent = '';
+    choiceMade = '';
 });
